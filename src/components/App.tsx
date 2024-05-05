@@ -24,7 +24,6 @@ function App() {
   const { jobItems, isLoading } = useJobItems(debouncedSearchText);
   const [currentPage, setCurrentPage] = useState(1);
   const [sortBy, setSortBy] = useState<SortBy>('relevant');
-  console.log(sortBy);
 
   // derived / computed state
   const totalNumberOfResults = jobItems?.length || 0;
@@ -42,6 +41,7 @@ function App() {
   );
 
   // event handlers / actions
+
   const handleChangePage = (direction: PageDirection) => {
     if (direction === 'next') {
       setCurrentPage((prev) => prev + 1);
