@@ -3,9 +3,11 @@ import JobList from './JobList';
 
 export default function BookmarksPopover() {
   const { bookmarkedJobItems, isLoading } = useBookmarksContext();
+  console.log(bookmarkedJobItems, isLoading);
+
   return (
     <div className="bookmarks-popover">
-      <JobList jobItems={[]} isLoading={false} />
+      <JobList jobItems={bookmarkedJobItems} isLoading={isLoading} />
     </div>
   );
 }
