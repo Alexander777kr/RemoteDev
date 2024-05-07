@@ -130,7 +130,6 @@ export function useLocalStorage<T>(key: string, initialValue: T): [T, React.Disp
     const [value, setValue] = useState(() =>
     JSON.parse(localStorage.getItem(key) || JSON.stringify(initialValue))
   );
-
   
   useEffect(() => {
     localStorage.setItem(key, JSON.stringify(value));
@@ -138,6 +137,22 @@ export function useLocalStorage<T>(key: string, initialValue: T): [T, React.Disp
 
   return [value, setValue] as const;
 }
+
+
+export function useOnClickOutside(refs: React.RefObject<HTMLElement>[], handler: () => void) {
+    useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      if (
+      refs.every(ref => !ref.current?.contains(e.target as Node))
+      )
+        handler();
+    };
+    document.addEventListener('click', handleClick);
+    return () => {
+      document.removeEventListener('click', handleClick);
+    };
+  }, [refs, handler]);
+}  
 
 
 export function useBookmarksContext() {
