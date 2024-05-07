@@ -5,7 +5,6 @@ import { createPortal } from 'react-dom';
 
 const BookmarksPopover = forwardRef<HTMLDivElement>(function (_, ref) {
   const { bookmarkedJobItems, isLoading } = useBookmarksContext();
-  console.log(bookmarkedJobItems, isLoading);
 
   return createPortal(
     <div ref={ref} className="bookmarks-popover">
